@@ -24,8 +24,7 @@ public class GravityManager : MonoBehaviour
     [SerializeField]
     private float shiftTimeSpeedModifier;
 
-    [SerializeField]
-    private float massDifferenceIgnore = 0; // ignore force from objects with mass difference m1/m2 smaller than coef 
+
 
     private void Awake()
     {
@@ -54,6 +53,10 @@ public class GravityManager : MonoBehaviour
 
     }
 
+    public float GetGConst()
+    {
+        return bigGConst;
+    }
 
     public List<Vector3> PredictOrbit(GravityObject predictionAim, int steps, bool predictCollisions , out GravityObject collissionObject)
     {
@@ -139,10 +142,6 @@ public class GravityManager : MonoBehaviour
             Vector3 force = Vector3.zero;
             foreach(GravityObject secondObject in FrameObjects)
             {
-                if( firstObject.GetMass() / secondObject.GetMass() > massDifferenceIgnore)
-                {
-                    continue;
-                }
 
                 Vector3 direction = secondObject.GetPosition() - firstObject.GetPosition();
 
@@ -155,7 +154,9 @@ public class GravityManager : MonoBehaviour
         }
     }
 
-    public void ChangeGConstDynamicly(float newGConst, bool scaleObjectsImpulse, ref List<GravityObject> gravityObjects)
+
+    //DEBUG
+    /*public void ChangeGConstDynamicly(float newGConst, bool scaleObjectsImpulse, ref List<GravityObject> gravityObjects)
     {
         if(bigGConst==0.0f)
         {
@@ -172,7 +173,7 @@ public class GravityManager : MonoBehaviour
         }
 
         bigGConst = newGConst;
-    }
+    }*/
 
     IEnumerator GravityUpdate()
     {
@@ -205,13 +206,13 @@ public class GravityManager : MonoBehaviour
 
     private void Update()
     {
-        float shiftSpeedCoef = 1;
+        /*float shiftSpeedCoef = 1;
         if (GameManager.Instance.GetInputManager().Shift())
         {
             shiftSpeedCoef = shiftTimeSpeedModifier;
         }
         calculationPause += (GameManager.Instance.GetInputManager().GetTimeInput() / 200) * shiftSpeedCoef;
-
+        */
         if(calculationPause<0)
         {
             calculationPause = 0.0f;

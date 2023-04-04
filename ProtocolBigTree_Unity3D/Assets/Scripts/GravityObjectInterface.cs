@@ -5,20 +5,16 @@ using UnityEngine;
 
 public class GravityObjectInterface : MonoBehaviour
 {
-    [SerializeField]
-    private float initialSpeed;
+    
+    public float initialSpeed;
 
-    [SerializeField]
-    private Vector3 initialImpuls;
+    public Vector3 initialImpuls;
+  
+    public float mass;
 
-    [SerializeField]
-    private float mass;
+    public float radius;
 
-    [SerializeField]
-    private float radius;
-
-    [SerializeField]
-    private bool isKinematic = false; // not interactable trhough gravitation 
+    public bool isKinematic = false; // not interactable trhough gravitation 
 
     private GravityObject gravityObject; 
 

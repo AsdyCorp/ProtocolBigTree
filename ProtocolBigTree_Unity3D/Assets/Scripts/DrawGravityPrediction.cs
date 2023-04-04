@@ -22,6 +22,9 @@ public class DrawGravityPrediction : MonoBehaviour
     [SerializeField]
     private int Steps = 1; // number of steps per one calculation call 
 
+    [SerializeField]
+    private int lineThickness = 10;
+
     private GravityObject collisionObject;
     public Material collisionObjectMat; 
 
@@ -37,6 +40,7 @@ public class DrawGravityPrediction : MonoBehaviour
         orbitLineRenderer.startColor = colorLine;
         orbitLineRenderer.endColor = colorLine;
         orbitLineRenderer.positionCount = Steps;
+        orbitLineRenderer.widthMultiplier = lineThickness; 
 
         if(colorLine.a==0)
         {
